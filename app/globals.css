@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground: 255, 255, 255;
+  --background: 0, 0, 0;
+  --primary: 255, 140, 0; /* dark orange / sunset */
+  --secondary: 255, 69, 0; /* reddish orange / flame */
+}
+
+body {
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
+  overflow-x: hidden;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-inter), sans-serif;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif font-bold; /* use font-serif (Playfair) here */
+  }
+  p {
+    @apply font-sans;
+  }
+}
+
+@layer components {
+  .hero-overlay {
+    @apply absolute inset-0 bg-black/60 z-10;
+  }
+  .section-padding {
+    @apply py-20 px-4 md:px-8 lg:px-16;
+  }
+  .gradient-text {
+  @apply bg-gradient-to-r from-orange-500 via-red-500 to-yellow-400 bg-clip-text text-transparent;
+}
+
+  }
+  .video-container {
+    @apply relative w-full overflow-hidden rounded-lg;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  }
+  .video-container video,
+  .video-container iframe {
+    @apply absolute top-0 left-0 w-full h-full object-cover;
+  }
+}
+
+@layer utilities {
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes glow {
+  from {
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.5);
+  }
+  to {
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.8);
+  }
+}
